@@ -1,10 +1,10 @@
-# full-stack-back-end-project
-This is my first full stack single page application. Creating the back-end was an interesting expirence. This is the API for my makeup reviews application.
+The Makeup Vault (Back-End Project)
 
-  I learned that the back end part of the application is the tools, while the front end is the frame and picture. I struggled with understanding the elements of mongoose methods. I did understand more about promise chains, which I struggled with before this point. Actually making these elements myself helped me learn these concepts a little more. I hope to build on the application making more complex models and routes in the future.
+ Creating the back-end was an interesting experience. This is the API for my makeup reviews application. I used the API to make models and routes with CRUD actions.  I struggled with understanding the elements of mongoose methods. I did understand more about promise chains, which I struggled with before this point. Actually making these elements myself helped me learn these concepts a little more. I hope to build on the application making more complex models and routes in the future.
 
 ## Planning Story
 - Set Up Files/ Go Over Requirements
+- Create Curl-Scripts
 - Create the User Models
 - Create the Review Models
 - Create User routes
@@ -13,8 +13,10 @@ This is my first full stack single page application. Creating the back-end was a
 - Add to App File
 - Run Curl Scripts
 - Debug add seudocode
+- Set Up / Deploy to Heroku
 
 ## Important Links
+Link to application --> https://kechib.github.io/full-stack-front-end-project/
 Link to front end --> https://github.com/kechib/full-stack-front-end-project
 
 ## Technologies Used
