@@ -78,7 +78,10 @@ router.patch('/reviews/:id', requireToken, (req, res, next) => {
 // DELETE /reviews/:id
 router.delete('/reviews/:id', requireToken, (req, res, next) =>{
   const id = req.params.id
-  Review.findById(id)
+  Review.findOne({
+    _id: id,
+    owner: req.user._id
+  })
     .then(handle404)
     .then(review => review.deleteOne())
     .then(() => res.sendStatus(204))
