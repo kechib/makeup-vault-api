@@ -1,4 +1,4 @@
-The Makeup Vault (Back-End Project)
+## The Makeup Vault (Back-End Project)
 
  Creating the back-end was an interesting experience. This is the API for my makeup reviews application. I used the API to make models and routes with CRUD actions.  I struggled with understanding the elements of mongoose methods. I did understand more about promise chains, which I struggled with before this point. Actually making these elements myself helped me learn these concepts a little more. I hope to build on the application making more complex models and routes in the future.
 
