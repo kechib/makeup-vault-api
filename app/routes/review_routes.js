@@ -7,6 +7,7 @@ const router = express.Router()
 const Review = require('./../models/review')
 // require the handle404 middleware, to handle not finding documents
 const handle404 = require('../../lib/custom_errors')
+// pull in error types and the logic to handle them and set status codes
 const requireToken = passport.authenticate('bearer', { session: false })
 // CREATE
 // POST /reviews/
@@ -33,6 +34,32 @@ router.post('/reviews', requireToken, (req, res, next) => {
 //     // if an error occurs, call the next middleware (the error handler middleware)
 //     .catch(next)
 // })
+router.get('/product-reviews', requireToken, (req, res, next) => {
+  Review.find()
+    .then(reviews => {
+      return reviews.map(profile => profile)
+    })
+    .then(reviews => res.status(200).json({ reviews: reviews }))
+    .catch(next)
+})
+
+// router.get('/product-reviews/:product', requireToken, (req, res, next) => {
+//   Review.findOne({ product: req.params.product })
+//     .then(handle404)
+//     .then(profile => res.status(200).json({ profile: profile }))
+//     .catch(next)
+// })
+router.get('/product-reviews/:product', requireToken, (req, res, next) => {
+  const product = req.params.product
+  // Create a review using the reviewData
+  // Review.findById(id)
+  Review.findOne({ product: product, owner: req.user._id})
+    .then(handle404)
+    // respond with the status code 201 created and the review that was created
+    .then(review => res.status(200).json({ review: review }))
+    // if an error occurs, call the next middleware (the error handler middleware)
+    .catch(next)
+})
 // INDEX
 // GET /Reviews
 router.get('/reviews', requireToken, (req, res, next) => {
