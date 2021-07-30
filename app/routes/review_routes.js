@@ -43,18 +43,29 @@ router.get('/product-reviews', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// router.get('/product-reviews/:product', requireToken, (req, res, next) => {
-//   Review.findOne({ product: req.params.product })
-//     .then(handle404)
-//     .then(profile => res.status(200).json({ profile: profile }))
-//     .catch(next)
-// })
 router.get('/product-reviews/:product', requireToken, (req, res, next) => {
-  const product = req.params.product
+  // const id = req.params.id
+  Review.findOne({ product: req.params.product, owner: req.user._id   })
+    .then(handle404)
+    .then(review => res.status(200).json({ review: review }))
+    .catch(next)
+})
+router.get('/product-reviews/', requireToken, (req, res, next) => {
+  // const id = req.params.id
   // Create a review using the reviewData
   // Review.findById(id)
-  Review.findOne({ product: product, owner: req.user._id})
-    .then(handle404)
+  Review.findOne({ owner: req.user._id })
+  .then(review => {
+    if (review) {
+      return review
+    }
+    return Review.create({ product: req.params.product, owner: req.user._id} )
+  })
+
+    .then(review => {
+      handle404.requireOwnership(req, review)
+      return review
+    })
     // respond with the status code 201 created and the review that was created
     .then(review => res.status(200).json({ review: review }))
     // if an error occurs, call the next middleware (the error handler middleware)
