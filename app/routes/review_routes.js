@@ -37,7 +37,7 @@ router.post('/reviews', requireToken, (req, res, next) => {
 router.get('/product-reviews', requireToken, (req, res, next) => {
   Review.find()
     .then(reviews => {
-      return reviews.map(profile => profile)
+      return reviews.map(reviews => reviews)
     })
     .then(reviews => res.status(200).json({ reviews: reviews }))
     .catch(next)
